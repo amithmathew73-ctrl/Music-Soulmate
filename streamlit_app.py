@@ -138,8 +138,7 @@ AUDIO_FEATURE_COLUMNS = [
     "tempo",
 ]
 
-@st.cache_data(show_spinner=False)
-def get_playlist_tracks(sp: spotipy.Spotify, playlist_input: str) -> pd.DataFrame:
+def get_playlist_tracks(_sp: spotipy.Spotify, playlist_input: str) -> pd.DataFrame:
     """Fetch all tracks from a playlist URL or ID, with pagination."""
     try:
         # Accept URL or raw ID
@@ -178,7 +177,7 @@ def get_playlist_tracks(sp: spotipy.Spotify, playlist_input: str) -> pd.DataFram
         raise RuntimeError(f"Failed to fetch playlist: {e}")
 
 @st.cache_data(show_spinner=False)
-def get_audio_features(sp: spotipy.Spotify, track_ids: List[str]) -> pd.DataFrame:
+def get_audio_features(_sp: spotipy.Spotify, track_ids: List[str]) -> pd.DataFrame:
     feats = []
     batch = 100
     for i in range(0, len(track_ids), batch):
@@ -192,7 +191,7 @@ def get_audio_features(sp: spotipy.Spotify, track_ids: List[str]) -> pd.DataFram
     return pd.DataFrame(feats).rename(columns={"id": "track_id"})
 
 @st.cache_data(show_spinner=False)
-def get_artist_genres(sp: spotipy.Spotify, artist_ids: List[str]) -> Dict[str, List[str]]:
+def get_artist_genres(_sp: spotipy.Spotify, artist_ids: List[str]) -> Dict[str, List[str]]:
     genres: Dict[str, List[str]] = {}
     batch = 50
     for i in range(0, len(artist_ids), batch):
