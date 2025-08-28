@@ -1,0 +1,10 @@
+Based on the code provided, the dependencies you need to list in your `requirements.txt` file are:
+
+```
+streamlit
+spotipy
+scikit-learn
+pandas
+numpy
+python-slugify
+```
